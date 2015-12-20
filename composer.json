@@ -20,6 +20,6 @@
         "psr-4": {"Byng\\": "src/Byng"}
     },
     "scripts": {
-        "post-install-cmd": "Byng\\PimcoreDoctrine\\Composer\\CliInstaller::postInstall"
+        "post-package-install": "Byng\\PimcoreDoctrine\\Composer\\CliManager::postPackageInstall"
     }
 }

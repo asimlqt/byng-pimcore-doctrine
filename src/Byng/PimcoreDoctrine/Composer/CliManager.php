@@ -6,7 +6,7 @@ use Composer\Script\Event;
 use Composer\Util\Filesystem;
 use Composer\Installer\PackageEvent;
 
-class CliInstaller
+class CliManager
 {
 
     public static function postPackageInstall(PackageEvent $event)
