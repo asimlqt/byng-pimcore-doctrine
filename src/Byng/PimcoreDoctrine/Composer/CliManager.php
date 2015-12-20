@@ -17,7 +17,7 @@ class CliManager
         if(!file_exists($rootPath."/cli-config.php")) {
             copy(
                 $rootPath . "/vendor/asimlqt/byng-pimcore-doctrine/cli-config.php",
-                $rootPath
+                $rootPath . "/cli-config.php"
             );
         }
     }
