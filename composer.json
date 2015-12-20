@@ -14,7 +14,8 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "doctrine/orm": "*"
+        "doctrine/orm": "*",
+        "doctrine/migrations": "1.0.0"
     },
     "autoload": {
         "psr-4": {"Byng\\": "src/Byng"}
