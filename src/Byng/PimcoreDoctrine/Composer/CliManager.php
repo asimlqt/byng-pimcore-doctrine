@@ -9,7 +9,7 @@ use Composer\Installer\PackageEvent;
 class CliManager
 {
 
-    public static function postPackageInstall(PackageEvent $event)
+    public static function postInstall(Event $event)
     {
         $config = $event->getComposer()->getConfig();
         $rootPath = dirname($config->get('vendor-dir'));
