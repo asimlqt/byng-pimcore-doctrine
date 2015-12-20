@@ -43,14 +43,17 @@ class Setup
     {
         $config = DoctrineSetup::createAnnotationMetadataConfiguration(
             $this->entityPaths,
-            $this->isDevMode
+            $this->isDevMode,
+            null,
+            null,
+            false
         );
         
         self::$em = EntityManager::create($this->getDbParams(), $config);
 
         $platform = self::$em->getConnection()->getDatabasePlatform();
         $platform->registerDoctrineTypeMapping('enum', 'string');
-        
+
         return self::$em;
     }
 
