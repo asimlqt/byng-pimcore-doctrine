@@ -18,5 +18,8 @@
     },
     "autoload": {
         "psr-4": {"Byng\\": "src/Byng"}
+    },
+    "scripts": {
+        "post-install-cmd": "Byng\\PimcoreDoctrine\\Composer\\CliInstaller::postInstall"
     }
 }

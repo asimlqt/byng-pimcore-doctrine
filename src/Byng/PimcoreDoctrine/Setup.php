@@ -8,28 +8,46 @@ use Doctrine\ORM\EntityManager;
 
 class Setup
 {
-    
-    private $entityPaths = [];
-    private $isDevMode = false;
+
+    private $entityPaths;
+    private $isDevMode;
+
+    /**
+     * 
+     * @var \Doctrine\ORM\EntityManager
+     */
+    private static $em;
 
     /**
      * [__construct description]
      * 
-     * @param array $entityPaths [description]
+     * @param array $entityPaths
+     * @param bool  $isDevMode
      */
-    public function __construct(array $entityPaths = [])
+    public function __construct(array $entityPaths = [], $isDevMode = false)
     {
+        if(empty($entityPaths)) {
+            throw new Exception("Must supply an enetties");
+        }
+
         $this->entityPaths = $entityPaths;
+        $this->isDevMode = $isDevMode;
     }
 
     /**
      * [setDevMode description]
-     * 
-     * @param bool $isDevMode [description]
+     *
+     * @return \Doctrine\ORM\EntityManager
      */
-    public function setDevMode($isDevMode)
+    public function init()
     {
-        $this->isDevMode = $isDevMode;
+        $config = DoctrineSetup::createAnnotationMetadataConfiguration(
+            $this->entityPaths,
+            $this->isDevMode
+        );
+        
+        self::$em = EntityManager::create($this->getDbParams(), $config);
+        return self::$em;
     }
 
     /**
@@ -37,14 +55,9 @@ class Setup
      * 
      * @return \Doctrine\ORM\EntityManager
      */
-    public function getEntityManager()
+    public static function getEntityManager()
     {
-        $config = DoctrineSetup::createAnnotationMetadataConfiguration(
-            $this->entityPaths,
-            $this->isDevMode
-        );
-        
-        return EntityManager::create($this->getDbParams(), $config);
+        return self::$em;
     }
 
     /**
@@ -58,7 +71,7 @@ class Setup
         $db = $config->database;
 
         return array(
-            'driver'   => $db->adapter,
+            'driver'   => strtolower($db->adapter),
             'user'     => $db->params->username,
             'password' => $db->params->password,
             'dbname'   => $db->params->dbname,
