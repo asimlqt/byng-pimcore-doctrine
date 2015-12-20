@@ -1,0 +1,22 @@
+{
+    "name": "asimlqt/byng-pimcore-doctrine",
+    "type": "library",
+    "description": "Byng Pimcore Doctrine",
+    "keywords": ["byng", "pimcore", "doctrine"],
+    "homepage": "https://github.com/asimlqt/byng-pimcore-doctrine",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Asim Liaquat",
+            "email": "asim@byng.co",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "doctrine/orm": "*"
+    },
+    "autoload": {
+        "psr-4": {"Byng\\": "src/Byng"}
+    }
+}
