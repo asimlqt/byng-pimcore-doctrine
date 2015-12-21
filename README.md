@@ -7,13 +7,13 @@ This plugin allows developers to use doctrine orm to manage objects outside of p
 ## Installation
 
 Add the plugin in composer.json
-```
+```json
 "require": {
     "asimlqt/byng-pimcore-doctrine": "dev-master"
 }
 ```
 You will also need to add a post-install script to install the doctrine cli script. If you don't add the following line then you will have to manually copy 'cli-config.php' from inside the plugin folder to your document root.
-```
+```json
 "scripts": {
     "post-install-cmd": "Byng\\PimcoreDoctrine\\Composer\\CliManager::postInstall"
 }
@@ -22,20 +22,20 @@ You will also need to add a post-install script to install the doctrine cli scri
 ## Setup
 
 Add the following to 'website/var/config/startup.php'. Set the $entityDir to wherever you wish to create your entities.
-```
+```php
 $entityDir = PIMCORE_DOCUMENT_ROOT . "/website/lib/Entity";
 $setup = new \Byng\PimcoreDoctrine\Setup([$entityDir]);
 $em = $setup->init();
 ```
 You can store the entity manager reference ($em) in your DI container or Zend_Registry if you wish. You can also retrieve it from the setup class from anywhere in your code base:
-```
+```php
 $em = \Byng\PimcoreDoctrine\Setup::getEntityManager();
 ```
 
 ## Test
 
 Open a terminal and 'cd' to your document root and run the following command:
-```
+```bash
 ./vendor/bin/doctrine
 ```
 You should see a list of all available doctrine commands
@@ -91,14 +91,14 @@ class Product
 
 Create the products table using the doctrine cli
 
-```
+```bash
 ./vendor/bin/doctrine orm:schema-tool:update --force
 ```
 
 Create a repository class to handle product entities
 
 website/lib/Entity/Repository/ProductRepository.php
-```
+```php
 <?php
 namespace Entity\Repository;
 
@@ -122,7 +122,7 @@ class ProductRepository extends AbstractRepository
 
 Finally we can write code to persist our entity
 
-```
+```php
 <?php
 use Entity\Repository\ProductRepository;
 use Byng\PimcoreDoctrine\Setup;
