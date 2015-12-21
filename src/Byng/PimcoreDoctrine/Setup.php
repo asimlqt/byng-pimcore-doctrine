@@ -23,11 +23,13 @@ class Setup
      * 
      * @param array $entityPaths
      * @param bool  $isDevMode
+     *
+     * @throws \Byng\PimcoreDoctrine\EntityPathNotFoundException
      */
     public function __construct(array $entityPaths = [], $isDevMode = false)
     {
         if(empty($entityPaths)) {
-            throw new Exception("Must supply an enetties");
+            throw new EntityPathNotFoundException("Must supply atleast one entities path");
         }
 
         $this->entityPaths = $entityPaths;
@@ -35,7 +37,7 @@ class Setup
     }
 
     /**
-     * [setDevMode description]
+     * Initialize the entity manager
      *
      * @return \Doctrine\ORM\EntityManager
      */
