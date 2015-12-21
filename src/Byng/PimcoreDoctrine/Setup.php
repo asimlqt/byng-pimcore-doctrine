@@ -5,12 +5,33 @@ namespace Byng\PimcoreDoctrine;
 use Pimcore\Config;
 use Doctrine\ORM\Tools\Setup as DoctrineSetup;
 use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Cache\Cache;
 
 class Setup
 {
-
+    /**
+     * 
+     * @var array
+     */
     private $entityPaths;
+
+    /**
+     * 
+     * @var boolean
+     */
     private $isDevMode;
+
+    /**
+     * 
+     * @var string
+     */
+    private $proxyDir;
+
+    /**
+     * 
+     * @var \Doctrine\Common\Cache\Cache
+     */
+    private $cache;
 
     /**
      * 
@@ -19,7 +40,7 @@ class Setup
     private static $em;
 
     /**
-     * [__construct description]
+     * Constructor. Initialize required properties.
      * 
      * @param array $entityPaths
      * @param bool  $isDevMode
@@ -37,6 +58,24 @@ class Setup
     }
 
     /**
+     * 
+     * @param string $proxyDir
+     */
+    public function setProxyDir($proxyDir)
+    {
+        $this->proxyDir = $proxyDir;
+    }
+
+    /**
+     * 
+     * @param \Doctrine\Common\Cache\Cache $cache
+     */
+    public function setCache(Cache $cache)
+    {
+        $this->cache = $cache;
+    }
+
+    /**
      * Initialize the entity manager
      *
      * @return \Doctrine\ORM\EntityManager
@@ -46,8 +85,8 @@ class Setup
         $config = DoctrineSetup::createAnnotationMetadataConfiguration(
             $this->entityPaths,
             $this->isDevMode,
-            null,
-            null,
+            $this->proxyDir,
+            $this->cache,
             false
         );
         
@@ -60,7 +99,8 @@ class Setup
     }
 
     /**
-     * [getEntityManager description]
+     * get the configured entity manager. Must call init() first to
+     * create it.
      * 
      * @return \Doctrine\ORM\EntityManager
      */
@@ -70,7 +110,7 @@ class Setup
     }
 
     /**
-     * [getDbParams description]
+     * 
      * 
      * @return array
      */
