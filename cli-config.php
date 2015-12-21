@@ -2,5 +2,8 @@
 
 require_once 'pimcore/cli/startup.php';
 
-$entityManager = \Byng\PimcoreDoctrine\Setup::getEntityManager();
-return \Doctrine\ORM\Tools\Console\ConsoleRunner::createHelperSet($entityManager);
+use Byng\PimcoreDoctrine\Setup;
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+
+$entityManager = Setup::getEntityManager();
+return ConsoleRunner::createHelperSet($entityManager);
