@@ -42,12 +42,12 @@ You should see a list of all available doctrine commands
 
 ## Example
 
-1. Create a product entity
+Create a product entity
 
 NB: You'll probably have to add the 'Entity' namespace to your autoloader.
 
 website/lib/Entity/Product.php
-```
+```php
 <?php
 namespace Entity;
 
@@ -89,13 +89,13 @@ class Product
 }
 ```
 
-2. Create the products table using the doctrine cli
+Create the products table using the doctrine cli
 
 ```
 ./vendor/bin/doctrine orm:schema-tool:update --force
 ```
 
-3. Create a repository class to handle product entities
+Create a repository class to handle product entities
 
 website/lib/Entity/Repository/ProductRepository.php
 ```
@@ -120,7 +120,7 @@ class ProductRepository extends AbstractRepository
 
 ```
 
-4. Finally we can write code to persist our entity
+Finally we can write code to persist our entity
 
 ```
 <?php
