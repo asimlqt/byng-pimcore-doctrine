@@ -12,7 +12,7 @@ Add the plugin in composer.json
     "asimlqt/byng-pimcore-doctrine": "dev-master"
 }
 ```
-You will also need to add a post-install script to install the cli script. If you don't add the following line then you will have to manually copy 'cli-config.php' from inside the plugin folder to your document root.
+You will also need to add a post-install script to install the doctrine cli script. If you don't add the following line then you will have to manually copy 'cli-config.php' from inside the plugin folder to your document root.
 ```
 "scripts": {
     "post-install-cmd": "Byng\\PimcoreDoctrine\\Composer\\CliManager::postInstall"
