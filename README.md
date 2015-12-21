@@ -6,7 +6,7 @@ This plugin allows developers to use doctrine orm to manage objects outside of p
 
 ## Installation
 
-1 - Require the library in composer.json
+Add the plugin in composer.json
 ```
 "require": {
     "asimlqt/byng-pimcore-doctrine": "dev-master"
@@ -42,11 +42,12 @@ You should see a list of all available doctrine commands
 
 ## Example
 
-Create an entity class:
+1. Create a product entity
+
+NB: You'll probably have to add the 'Entity' namespace to your autoloader.
 
 website/lib/Entity/Product.php
 ```
-
 <?php
 namespace Entity;
 
@@ -88,13 +89,13 @@ class Product
 }
 ```
 
-Create your schema/tables:
+2. Create the products table using the doctrine cli
 
 ```
 ./vendor/bin/doctrine orm:schema-tool:update --force
 ```
 
-Create a repository class
+3. Create a repository class to handle products
 
 website/lib/Entity/Repository/ProductRepository.php
 ```
@@ -118,7 +119,9 @@ class ProductRepository extends AbstractRepository
 }
 
 ```
-Finally we can write code to persist our entity
+
+4. Finally we can write code to persist our entity
+
 ```
 <?php
 use Entity\Repository\ProductRepository;
