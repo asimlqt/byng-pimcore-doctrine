@@ -95,7 +95,7 @@ class Product
 ./vendor/bin/doctrine orm:schema-tool:update --force
 ```
 
-3. Create a repository class to handle products
+3. Create a repository class to handle product entities
 
 website/lib/Entity/Repository/ProductRepository.php
 ```
