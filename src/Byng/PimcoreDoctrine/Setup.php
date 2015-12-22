@@ -49,8 +49,14 @@ class Setup
      */
     public function __construct(array $entityPaths = [], $isDevMode = false)
     {
-        if(empty($entityPaths)) {
-            throw new EntityPathNotFoundException("Must supply atleast one entities path");
+        if (empty($entityPaths)) {
+            throw new EntityPathException("Must supply atleast one entities path");
+        }
+
+        foreach ($entityPaths as $path) {
+            if (!is_dir($path)) {
+                throw new EntityPathException("$path is not a directory");
+            }
         }
 
         $this->entityPaths = $entityPaths;
@@ -90,12 +96,13 @@ class Setup
             false
         );
         
-        self::$em = EntityManager::create($this->getDbParams(), $config);
+        $em = EntityManager::create($this->getDbParams(), $config);
 
-        $platform = self::$em->getConnection()->getDatabasePlatform();
+        $platform = $em->getConnection()->getDatabasePlatform();
         $platform->registerDoctrineTypeMapping('enum', 'string');
 
-        return self::$em;
+        static::$em = $em;
+        return $em;
     }
 
     /**
@@ -106,7 +113,7 @@ class Setup
      */
     public static function getEntityManager()
     {
-        return self::$em;
+        return static::$em;
     }
 
     /**
