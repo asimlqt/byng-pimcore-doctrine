@@ -121,7 +121,7 @@ class Setup
      * 
      * @return array
      */
-    private function getDbParams()
+    protected function getDbParams()
     {
         $config = Config::getSystemConfig();
         $db = $config->database;
