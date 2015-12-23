@@ -1,6 +1,6 @@
 <?php
 
-namespace Byng\PimcoreDoctrine;
+namespace Byng\Pimcore\Doctrine;
 
 use Doctrine\ORM\EntityManager;
 

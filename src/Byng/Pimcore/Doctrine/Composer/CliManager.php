@@ -1,6 +1,6 @@
 <?php
 
-namespace Byng\PimcoreDoctrine\Composer;
+namespace Byng\Pimcore\Doctrine\Composer;
 
 use Composer\Script\Event;
 use Composer\Util\Filesystem;
@@ -12,7 +12,8 @@ class CliManager
     public static function postInstall(Event $event)
     {
         $config = $event->getComposer()->getConfig();
-        $rootPath = dirname($config->get('vendor-dir'));
+        $vendorDir = $config->get('vendor-dir');
+        $rootPath = dirname($vendorDir);
 
         if(!file_exists($rootPath."/cli-config.php")) {
             copy(

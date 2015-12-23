@@ -4,11 +4,12 @@
     "description": "Byng Pimcore Doctrine",
     "keywords": ["byng", "pimcore", "doctrine"],
     "homepage": "https://github.com/asimlqt/byng-pimcore-doctrine",
-    "license": "Apache-2.0",
+    "license": "MIT",
     "authors": [
         {
-            "name": "Asim Liaquat",
-            "email": "asim@byng.co",
+            "name": "Byng Developers",
+            "email": "info@byng.co",
+            "homepage": "http://byng.co/",
             "role": "Developer"
         }
     ],
@@ -20,6 +21,7 @@
         "psr-4": {"Byng\\": "src/Byng"}
     },
     "scripts": {
-        "post-install-cmd": "Byng\\PimcoreDoctrine\\Composer\\CliManager::postInstall"
+        "post-install-cmd": "Byng\\Pimcore\\Doctrine\\Composer\\CliManager::postInstall",
+        "post-update-cmd": "Byng\\Pimcore\\Doctrine\\Composer\\CliManager::postInstall"
     }
 }

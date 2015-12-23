@@ -15,7 +15,7 @@ Add the plugin in composer.json
 You will also need to add a post-install script to install the doctrine cli script. If you don't add the following line then you will have to manually copy 'cli-config.php' from inside the plugin folder to your document root.
 ```json
 "scripts": {
-    "post-install-cmd": "Byng\\PimcoreDoctrine\\Composer\\CliManager::postInstall"
+    "post-install-cmd": "Byng\\Pimcore\\Doctrine\\Composer\\CliManager::postInstall"
 }
 ```
 
@@ -24,12 +24,12 @@ You will also need to add a post-install script to install the doctrine cli scri
 Add the following to 'website/var/config/startup.php'. Set the $entityDir to wherever you wish to create your entities.
 ```php
 $entityDir = PIMCORE_DOCUMENT_ROOT . "/website/lib/Entity";
-$setup = new \Byng\PimcoreDoctrine\Setup([$entityDir]);
+$setup = new \Byng\Pimcore\Doctrine\Setup([$entityDir]);
 $em = $setup->init();
 ```
 You can store the entity manager reference ($em) in your DI container or Zend_Registry if you wish. You can also retrieve it from the setup class from anywhere in your code base:
 ```php
-$em = \Byng\PimcoreDoctrine\Setup::getEntityManager();
+$em = \Byng\Pimcore\Doctrine\Setup::getEntityManager();
 ```
 
 ## Test
@@ -102,7 +102,7 @@ website/lib/Entity/Repository/ProductRepository.php
 <?php
 namespace Entity\Repository;
 
-use Byng\PimcoreDoctrine\AbstractRepository;
+use Byng\Pimcore\Doctrine\AbstractRepository;
 
 class ProductRepository extends AbstractRepository
 {
@@ -125,7 +125,7 @@ Finally we can write code to persist our entity
 ```php
 <?php
 use Entity\Repository\ProductRepository;
-use Byng\PimcoreDoctrine\Setup;
+use Byng\Pimcore\Doctrine\Setup;
 use Entity\Product;
 
 $product = new Product();

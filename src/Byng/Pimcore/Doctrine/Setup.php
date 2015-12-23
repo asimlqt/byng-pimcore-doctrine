@@ -1,6 +1,6 @@
 <?php
 
-namespace Byng\PimcoreDoctrine;
+namespace Byng\Pimcore\Doctrine;
 
 use Pimcore\Config;
 use Doctrine\ORM\Tools\Setup as DoctrineSetup;
@@ -45,7 +45,7 @@ class Setup
      * @param array $entityPaths
      * @param bool  $isDevMode
      *
-     * @throws \Byng\PimcoreDoctrine\EntityPathNotFoundException
+     * @throws \Byng\Pimcore\Doctrine\EntityPathNotFoundException
      */
     public function __construct(array $entityPaths = [], $isDevMode = false)
     {

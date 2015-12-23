@@ -1,5 +1,5 @@
 <?php
 
-namespace Byng\PimcoreDoctrine;
+namespace Byng\Pimcore\Doctrine;
 
 class EntityPathException extends \Exception {}
