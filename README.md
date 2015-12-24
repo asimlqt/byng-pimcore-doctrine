@@ -15,7 +15,8 @@ Add the plugin in composer.json
 You will also need to add a post-install script to install the doctrine cli script. If you don't add the following line then you will have to manually copy 'cli-config.php' from inside the plugin folder to your document root.
 ```json
 "scripts": {
-    "post-install-cmd": "Byng\\Pimcore\\Doctrine\\Composer\\CliManager::postInstall"
+    "post-install-cmd": "Byng\\Pimcore\\Doctrine\\Composer\\CliManager::postInstall",
+    "post-update-cmd": "Byng\\Pimcore\\Doctrine\\Composer\\CliManager::postInstall"
 }
 ```
 
